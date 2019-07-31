@@ -28,7 +28,7 @@ public class ListController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{list-name}/{movie-id}")
-    public UserMovieList addMovieToList(@PathVariable("list-name") String listName, @PathVariable("movie-id") Long movieId,  HttpServletRequest request) {
+    public UserMovieList addMovieToList(@PathVariable("list-name") String listName, @PathVariable("movie-id") Long movieId, HttpServletRequest request) {
         return userService.addToList(movieId, listName, request);
     }
 

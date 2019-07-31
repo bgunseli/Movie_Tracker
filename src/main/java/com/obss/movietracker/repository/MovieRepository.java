@@ -13,7 +13,7 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     List<Movie> findAllByNameIsNot(Pageable pageable, String name);
 
-    List<Movie> findAllByNameAndNameIsNot(Pageable pageable, String name, String name1);
+    List<Movie> findAllByNameLikeAndNameIsNot(Pageable pageable, String name, String name1);
 
     List<Movie> findAllByDirectorAndNameIsNot(Pageable pageable, Director director, String name);
 

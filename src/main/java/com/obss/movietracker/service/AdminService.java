@@ -43,7 +43,9 @@ public class AdminService {
         this.directorRepository = directorRepository;
     }
 
-    /**Movies*/
+    /**
+     * Movies
+     */
 
     public List<Movie> getMovies() {
         List<Movie> movieList = movieRepository.findAll();
@@ -130,7 +132,9 @@ public class AdminService {
         movieRepository.save(movie);
     }
 
-    /**Users*/
+    /**
+     * Users
+     */
 
     public User getUser(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
@@ -169,7 +173,9 @@ public class AdminService {
         userRepository.save(user);
     }
 
-    /**Directors*/
+    /**
+     * Directors
+     */
 
     public Director getDirector(Long id) {
         Optional<Director> optionalDirector = directorRepository.findById(id);

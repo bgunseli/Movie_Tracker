@@ -35,7 +35,7 @@ public class UserService {
         Long userId = jwtTokenService.getCurrentUserId(request);
         Optional<User> optionalUser = userRepository.findById(userId);
         Movie emptyMovie = movieRepository.findByName("");
-        List<UserMovieList> userMovieLists= optionalUser.map(user -> userMovieListRepository
+        List<UserMovieList> userMovieLists = optionalUser.map(user -> userMovieListRepository
                 .findAllByUserAndListTypeAndMovieIsNot(user, listType, emptyMovie)).orElse(null);
         List<Movie> movies = new ArrayList<>();
         Objects.requireNonNull(userMovieLists).forEach(movieList -> movies.add(movieList.getMovie()));

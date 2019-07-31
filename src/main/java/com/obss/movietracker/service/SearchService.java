@@ -8,11 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class SearchService {
 
     public List<Movie> searchMovieByName(int page, int size, String name) {
         Pageable pageable = PageRequest.of(page, size);
-        return movieRepository.findAllByNameAndNameIsNot(pageable, name, "");
+        return movieRepository.findAllByNameLikeAndNameIsNot(pageable, name, "");
     }
 
     public List<Movie> searchMovieByDirector(int page, int size, String name) {

@@ -22,7 +22,7 @@ public class LoginController {
 
     @PostMapping
     public void login(@RequestBody UserLoginBody userLoginBody, HttpServletResponse response) {
-        String jwtToken =  loginService.login(userLoginBody.getUsername(), userLoginBody.getPassword());
+        String jwtToken = loginService.login(userLoginBody.getUsername(), userLoginBody.getPassword());
         Cookie cookie = new Cookie("Authorization", jwtToken);
         cookie.setMaxAge(604800);
         cookie.setHttpOnly(true);
