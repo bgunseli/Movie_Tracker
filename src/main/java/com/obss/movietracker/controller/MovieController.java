@@ -3,7 +3,6 @@ package com.obss.movietracker.controller;
 import com.obss.movietracker.model.movie.Movie;
 import com.obss.movietracker.service.AdminService;
 import com.obss.movietracker.service.SearchService;
-import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
