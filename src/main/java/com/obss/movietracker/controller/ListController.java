@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/lists")
 public class ListController {
@@ -19,6 +20,11 @@ public class ListController {
     @Autowired
     public ListController(UserService userService) {
         this.userService = userService;
+    }
+
+    @GetMapping
+    public List<String> getMovieLists(HttpServletRequest request) {
+        return userService.getLists(request);
     }
 
     @GetMapping("/{list-name}")

@@ -73,18 +73,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login/**").permitAll()
 
-                .antMatchers(HttpMethod.GET, "/movies/**").authenticated()
-                .antMatchers(HttpMethod.POST, "/movies/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/movies/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/movies/**").hasRole("ADMIN")
-
-                //.antMatchers("/users/**").hasRole("ADMIN")
-                .antMatchers("/users/**").permitAll()
-                .antMatchers("/directors/**").hasRole("ADMIN")
-                .anyRequest()
-                .authenticated();
+                .antMatchers("/movies/**").hasRole("ADMIN")
+                .antMatchers("/users/**").hasRole("ADMIN")
+                .antMatchers("/users/**").hasRole("ADMIN")
+                .antMatchers("/directors/**").hasRole("ADMIN");
 
         // Add our custom JWT security filter
         http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
+
 }

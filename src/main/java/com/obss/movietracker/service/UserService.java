@@ -42,6 +42,17 @@ public class UserService {
         return movies;
     }
 
+    public List<String> getLists(HttpServletRequest request) {
+        Long userId = jwtTokenService.getCurrentUserId(request);
+        Optional<User> optionalUser = userRepository.findById(userId);
+        Movie emptyMovie = movieRepository.findByName("");
+        List<UserMovieList> userMovieLists = optionalUser.map(user -> userMovieListRepository
+                .findAllByUserAndMovie(user, emptyMovie)).orElse(null);
+        List<String> lists = new ArrayList<>();
+        Objects.requireNonNull(userMovieLists).forEach(movieList -> lists.add(movieList.getListType()));
+        return lists;
+    }
+
     public UserMovieList addToList(Long movieId, String listType, HttpServletRequest request) {
         Long userId = jwtTokenService.getCurrentUserId(request);
         Optional<Movie> optionalMovie = movieRepository.findById(movieId);

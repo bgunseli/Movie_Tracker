@@ -14,7 +14,7 @@ public interface UserMovieListRepository extends JpaRepository<UserMovieList, Us
 
     List<UserMovieList> findAllByMovie(Movie movie);
 
-    List<UserMovieList> findAllByUser(User user);
+    List<UserMovieList> findAllByUserAndMovie(User user, Movie movie);
 
     List<UserMovieList> findAllByUserAndListType(User user, String listType);
 

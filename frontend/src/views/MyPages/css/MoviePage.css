@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px
+}
+
+th {
+    padding-right: 5px;
+    background-color: #00acc1;
+    color: white;
+}

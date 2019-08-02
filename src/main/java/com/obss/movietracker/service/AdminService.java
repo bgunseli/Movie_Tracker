@@ -48,7 +48,7 @@ public class AdminService {
      */
 
     public List<Movie> getMovies() {
-        List<Movie> movieList = movieRepository.findAll();
+        List<Movie> movieList = movieRepository.findAllByNameIsNot("");
         if (movieList == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no movie");
         }
@@ -126,7 +126,7 @@ public class AdminService {
         if (!movie.getId().equals(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given id and movie's id cannot be different");
         }
-        if (movieRepository.existsById(id)) {
+        if (!movieRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This movie with given id doesn't exist");
         }
         movieRepository.save(movie);
@@ -138,6 +138,16 @@ public class AdminService {
 
     public User getUser(Long id) {
         Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            return optionalUser.get();
+        }
+        else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This user with given id doesn't exist");
+        }
+    }
+
+    public User getUser(String username) {
+        Optional<User> optionalUser = userRepository.findByUsername(username);
         if (optionalUser.isPresent()) {
             return optionalUser.get();
         }
@@ -167,7 +177,7 @@ public class AdminService {
         if (!user.getId().equals(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given id and user's id cannot be different");
         }
-        if (userRepository.existsById(id)) {
+        if (!userRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This user with given id doesn't exist");
         }
         userRepository.save(user);
@@ -208,7 +218,7 @@ public class AdminService {
         if (!director.getId().equals(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Given id and director's id cannot be different");
         }
-        if (directorRepository.existsById(id)) {
+        if (!directorRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This director with given id doesn't exist");
         }
         directorRepository.save(director);
